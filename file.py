@@ -205,7 +205,7 @@ print(f'Precisão da Previsão: {accuracy}')  # Mostrar precisão geral do teste
 
 # Relatório de classificação detalhado
 classification_rep = metrics.classification_report(
-    true_labels_encoded, predicted_labels_encoded, target_names=le.classes_, digits=4
+    true_labels_encoded, predicted_labels_encoded, target_names=le.classes_, digits=4, zero_division=1
 )  # Relatório detalhado com precisão, recall e f1-score
 
 print("Relatório de Classificação:")
