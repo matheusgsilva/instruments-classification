@@ -1,5 +1,5 @@
 import os
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'  # Desabilita certas otimizações para maior controle
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 import numpy as np
 import pandas as pd
