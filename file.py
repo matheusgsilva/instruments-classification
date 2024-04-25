@@ -239,3 +239,30 @@ plt.ylabel('Precisão')  # Rótulo do eixo Y
 plt.legend()  # Adicionar legenda
 plt.grid(True)  # Adicionar grade ao gráfico
 plt.show()  # Exibir o gráfico
+
+confusion_matrix = metrics.confusion_matrix(true_labels_encoded, predicted_labels_encoded)
+
+# Calcular a precisão para cada classe
+class_accuracy = confusion_matrix.diagonal() / confusion_matrix.sum(axis=1) * 100
+
+# Plotar a matriz de confusão
+plt.figure(figsize=(10, 8))
+plt.imshow(confusion_matrix, cmap='Blues', interpolation='nearest')
+plt.title('Matriz de Confusão')
+plt.colorbar()
+tick_marks = np.arange(len(le.classes_))
+plt.xticks(tick_marks, le.classes_, rotation=45)
+plt.yticks(tick_marks, le.classes_)
+plt.xlabel('Rótulos Previstos')
+plt.ylabel('Rótulos Verdadeiros')
+
+# Adicionar valores na matriz
+for i in range(len(le.classes_)):
+    for j in range(len(le.classes_)):
+        plt.text(j, i, confusion_matrix[i, j], ha='center', va='center', color='black')
+
+plt.show()
+
+# Exibir as taxas de precisão para cada instrumento
+for label, accuracy in zip(le.classes_, class_accuracy):
+    print(f'Precisão para {label}: {accuracy:.2f}%')
